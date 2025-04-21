@@ -37,5 +37,10 @@ seeMoreBtn.addEventListener("click", async () => {
     } catch (err) {
       displayError();
     }
-  })();
+    // Scroll to the top of the recipe cards container
+    const recipeCardsContainer = document.querySelector(".recipe-cards-container");
+    recipeCardsContainer.scrollIntoView({ behavior: "smooth" });
+    // Hide the "See More" button after clicking
+    seeMoreBtn.style.display = "none";
+  });
 
