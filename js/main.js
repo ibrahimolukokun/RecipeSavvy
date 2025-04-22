@@ -12,6 +12,7 @@ searchBtn.addEventListener("click", async () => {
     try {
       const meals = await fetchRecipes(query);
       meals ? displayRecipes(meals) : displayNoResults();
+      seeMoreBtn.style.display = "none";
     } catch (err) {
       console.error(err);
       displayError();
@@ -29,18 +30,13 @@ searchBtn.addEventListener("click", async () => {
   }
 })();
 
-// Event listener for "See More" button
-seeMoreBtn.addEventListener("click", async () => {
-    try {
-      const randomMeals = await fetchRandomRecipes();
-      displayRecipes(randomMeals);
-    } catch (err) {
-      displayError();
-    }
-    // Scroll to the top of the recipe cards container
-    const recipeCardsContainer = document.querySelector(".recipe-cards-container");
-    recipeCardsContainer.scrollIntoView({ behavior: "smooth" });
-    // Hide the "See More" button after clicking
-    seeMoreBtn.style.display = "none";
-  });
 
+document.addEventListener("DOMContentLoaded", async () => {
+  const initialMeals = await fetchRandomRecipes(6);
+  displayRecipes(initialMeals);  
+});
+
+seeMoreBtn.addEventListener("click", async () => {
+  const moreMeals = await fetchRandomRecipes(6);
+  displayRecipes(moreMeals, true); // Append!
+});
