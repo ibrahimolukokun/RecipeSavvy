@@ -237,7 +237,14 @@
     background-color: #fff;
     border-radius: 0.3rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
     overflow: hidden;
+}
+
+.recipe-card:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
 }
 
 .flex-column-center{

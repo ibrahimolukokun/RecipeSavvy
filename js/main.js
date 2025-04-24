@@ -4,8 +4,11 @@ import { displayRecipes, displayNoResults, displayError } from './dom.js';
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
 const seeMoreBtn = document.getElementById("see-more-btn");
+const recipeHeader = document.getElementById("recipe-list-header");
 
-// Event listener for search button
+
+
+// Handle search
 searchBtn.addEventListener("click", async () => {
   const query = searchInput.value.trim();
   if (query !== "") {
@@ -13,6 +16,11 @@ searchBtn.addEventListener("click", async () => {
       const meals = await fetchRecipes(query);
       meals ? displayRecipes(meals) : displayNoResults();
       seeMoreBtn.style.display = "none";
+      recipeHeader.textContent = `Search Results for "${query}"`;
+      recipeHeader.style.fontSize = "1.5rem";
+      recipeHeader.style.fontWeight = "bold";
+      recipeHeader.style.color = "#333";
+      localStorage.removeItem("randomMeals"); // clear cache on search
     } catch (err) {
       console.error(err);
       displayError();
@@ -20,23 +28,33 @@ searchBtn.addEventListener("click", async () => {
   }
 });
 
-// Load random meals on homepage
-(async () => {
-  try {
-    const randomMeals = await fetchRandomRecipes();
-    displayRecipes(randomMeals);
-  } catch (err) {
-    displayError();
-  }
-})();
-
-
+// Load meals on page load
 document.addEventListener("DOMContentLoaded", async () => {
-  const initialMeals = await fetchRandomRecipes(6);
-  displayRecipes(initialMeals);  
+  const cachedMeals = localStorage.getItem("randomMeals");
+  if (cachedMeals) {
+    const meals = JSON.parse(cachedMeals);
+    displayRecipes(meals);
+  } else {
+    try {
+      const initialMeals = await fetchRandomRecipes(6);
+      displayRecipes(initialMeals);
+      localStorage.setItem("randomMeals", JSON.stringify(initialMeals));
+    } catch (err) {
+      displayError();
+    }
+  }
 });
 
+// Handle See More
 seeMoreBtn.addEventListener("click", async () => {
-  const moreMeals = await fetchRandomRecipes(6);
-  displayRecipes(moreMeals, true); // Append!
+  try {
+    const moreMeals = await fetchRandomRecipes(6);
+    const currentMeals = JSON.parse(localStorage.getItem("randomMeals")) || [];
+    const updatedMeals = [...currentMeals, ...moreMeals];
+    displayRecipes(moreMeals, true); // Append!
+    localStorage.setItem("randomMeals", JSON.stringify(updatedMeals));
+  } catch (err) {
+    console.error(err);
+    displayError();
+  }
 });

@@ -41,8 +41,23 @@ export function displayRecipes(meals, append = false) {
       `;
 
       recipeCardsContainer.appendChild(card);
+
+      // Add event listeners to each card
+      card.addEventListener("click", () => {
+      // Save the meal ID or full data to localStorage
+      localStorage.setItem("selectedMeal", JSON.stringify(meal));
+    
+      // Redirect to meal.html
+      window.location.href = "meal.html";
   });
+  
+  });
+  
+
 }
+
+
+
 
 
 // Function to display a message when no recipes are found
