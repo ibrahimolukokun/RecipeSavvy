@@ -45,6 +45,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+// Show See More button after random recipes are loaded
+seeMoreBtn.style.display = "none"; // Hide initially
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const initialMeals = await fetchRandomRecipes(6);
+    if (initialMeals && initialMeals.length > 0) {
+      seeMoreBtn.style.display = "block"; // Show button if meals are loaded
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 // Handle See More
 seeMoreBtn.addEventListener("click", async () => {
   try {

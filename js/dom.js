@@ -38,6 +38,7 @@ export function displayRecipes(meals, append = false) {
           <p>${Math.floor(Math.random() * 200 + 50)} saves</p>
           </div>
           </div>
+          
       `;
 
       recipeCardsContainer.appendChild(card);
@@ -50,7 +51,7 @@ export function displayRecipes(meals, append = false) {
       // Redirect to meal.html
       window.location.href = "meal.html";
   });
-  
+
   });
   
 
