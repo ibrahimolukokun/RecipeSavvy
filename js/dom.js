@@ -54,11 +54,7 @@ export function displayRecipes(meals, append = false) {
 
   });
   
-
 }
-
-
-
 
 
 // Function to display a message when no recipes are found

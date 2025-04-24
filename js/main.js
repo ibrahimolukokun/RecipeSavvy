@@ -11,9 +11,12 @@ const recipeHeader = document.getElementById("recipe-list-header");
 // Handle search
 searchBtn.addEventListener("click", async () => {
   const query = searchInput.value.trim();
+  console.log("Search triggered with query:", query);
+
   if (query !== "") {
     try {
       const meals = await fetchRecipes(query);
+      console.log("Fetched meals:", meals);
       meals ? displayRecipes(meals) : displayNoResults();
       seeMoreBtn.style.display = "none";
       recipeHeader.textContent = `Search Results for "${query}"`;
@@ -27,6 +30,7 @@ searchBtn.addEventListener("click", async () => {
     }
   }
 });
+
 
 // Load meals on page load
 document.addEventListener("DOMContentLoaded", async () => {
