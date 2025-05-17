@@ -42,12 +42,8 @@ html, body {
     margin-right: 20px;
 }
 
-.nav{
-    display: flex;
-    flex-direction: row;
-    align-items: center; 
-    justify-content: center;
-    gap: 1.25rem;
+.nav-icon{
+  display: none;
 }
 
 .nav-list{
@@ -296,6 +292,18 @@ html, body {
   }
   
   @media (max-width: 768px) {
+
+    .nav-icon{
+      display:flex;
+  }
+  
+  .nav-list{
+      display: none;
+  }
+
+    .recipe-list{
+      padding: 1rem;
+  }
     .meal-content {
       flex-direction: column;
     }
@@ -303,4 +311,34 @@ html, body {
     .video-container {
       padding-top: 60%;
     }
+
+    .footer-container{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .social-media {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+  }
+  }
+
+  @media (max-width: 480px) {
+
+    .meal-detail-container{
+      padding: 1rem;
+    }
+    .footer-container{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+
+  .social-media {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+  }
   }
