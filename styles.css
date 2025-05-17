@@ -522,6 +522,18 @@
         align-items: flex-start;
         gap: 0.75rem;
     }
+
+    .footer-container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-media {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -548,5 +560,17 @@
 
     .recipe-info p {
         font-size: 0.7rem;
+    }
+
+    .footer-container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-media {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
 }
