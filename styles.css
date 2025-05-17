@@ -26,6 +26,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.nav-icon{
+    display: none;
+}
+
 .logo img{
     width: 150px;
     height: auto;
@@ -497,9 +501,18 @@
 
     .header-container,
     .footer-container {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         gap: 1rem;
+    }
+
+    .nav-icon{
+        display:flex;
+    }
+    
+    .nav-list{
+        display: none;
     }
 
     .nav,
@@ -514,6 +527,10 @@
 @media (max-width: 480px) {
     .header-container,
     .footer-container {
+        padding: 1rem;
+    }
+
+    .recipe-list{
         padding: 1rem;
     }
 
